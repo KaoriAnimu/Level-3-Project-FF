@@ -1,72 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/bayarDitempat.dart';
+import 'package:flutter_application_1/virtualAcc.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      home: const MyHomePage(title: 'Metode Pembayran'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class metodePembayaran extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Metode Pembayaran'),
       ),
-      body: Stack(
+      body: ListView(
         children: [
-          ListView.separated(
-            padding: const EdgeInsets.all(8),
-            itemCount: entries.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Row(
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        '${entries[index]}',
-                        style: TextStyle(fontSize: 24),
-                      )
-                    ],
-                  ),
-                ],
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
+          Padding(
+            padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+            child: ListTile(
+              leading: Icon(Icons.home),
+              title: TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => bayarDitempat()));
+                },
+                child: Text(
+                  'Bayar Ditempat',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
+          const Divider(
+            height: 20,
+            thickness: 1,
+            indent: 20,
+            endIndent: 20,
+            color: Colors.black,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+            child: ListTile(
+              leading: Icon(Icons.account_balance),
+              title: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => virtualAccount()));
+                },
+                child: Text(
+                  'Virtual Account',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 }
-
-final List<String> entries = <String>[
-  'Bayar Ditempat',
-  'Transfer Bank',
-  'OVO',
-  'Dana',
-  'Qris'
-];

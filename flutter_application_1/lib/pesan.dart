@@ -1,35 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class pesanPenginapan extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      home: const MyHomePage(title: 'Pesan'),
-    );
-  }
+  State<pesanPenginapan> createState() => _pesanPenginapan();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _pesanPenginapan extends State<pesanPenginapan> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _dateIn = TextEditingController();
   TextEditingController _dateOut = TextEditingController();
@@ -38,7 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Pesan'),
       ),
       body: Form(
         key: _formKey,

@@ -37,6 +37,7 @@ dependencies:
   getwidget: ^3.0.1
   intl: ^0.18.0
   cached_network_image:
+  qr_flutter: ^4.0.0
 
 dev_dependencies:
   flutter_test:
