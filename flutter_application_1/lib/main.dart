@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Register'),
+      home: const MyHomePage(title: 'Metode Pembayaran'),
     );
   }
 }
@@ -34,87 +34,36 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Register"),
+        title: Text(widget.title),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding:
-                  EdgeInsets.only(left: 30.0, right: 30.0, top: 50, bottom: 0),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Name',
-                    hintText: 'Masukkan Nama'),
-              ),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.only(left: 30.0, right: 30.0, top: 50, bottom: 0),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Masukkan Email'),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 30.0, right: 30.0, top: 50, bottom: 0),
-              child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Masukkan password'),
-              ),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.only(left: 30.0, right: 30.0, top: 50, bottom: 0),
-              child: SizedBox(
-                width: 600,
-                child: DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(width: 3, color: Colors.red))),
-                  value: selectedItem,
-                  items: item
-                      .map((item) => DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(item),
-                          ))
-                      .toList(),
-                  onChanged: (item) => setState(() => selectedItem = item),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: 30.0, right: 30.0, top: 60.0, bottom: 0),
-              child: SizedBox(
-                width: 200,
+      body: Stack(
+        children: [
+          ListView(
+            padding: const EdgeInsets.all(8),
+            children: <Widget>[
+              Container(
                 height: 50,
-                child: TextButton(
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: TextButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 80, 8, 3),
-                  ),
-                  onPressed: () {},
-                ),
+                child: const Center(child: Text('Ini QR Code')),
               ),
-            )
-          ],
-        ),
+              Container(
+                height: 50,
+                child: const Center(
+                    child: Text(
+                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry')),
+              ),
+              Center(
+                child: GFButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Lanjutkan',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
       ),
     );
   }
 }
-
-List<String> item = ['Kota', 'Bandung', 'Jakarta', 'Bali'];
-String? selectedItem = 'Kota';

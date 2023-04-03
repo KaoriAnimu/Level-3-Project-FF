@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   style: TextButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 80, 8, 3),
+                    backgroundColor: Colors.red,
                   ),
                   onPressed: () {},
                 ),
