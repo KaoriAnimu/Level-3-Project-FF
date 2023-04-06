@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/notifikasi.dart';
+import 'package:flutter_application_1/penginapan.dart';
 import 'package:flutter_application_1/pesan.dart';
 import 'package:flutter_application_1/register.dart';
 import 'package:getwidget/getwidget.dart';
@@ -14,6 +16,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.red,
         ),
-        home: register());
+        home: notifikasi());
   }
 }
