@@ -14,7 +14,8 @@ class _notifikasi extends State<notifikasi> {
     const Detail(
         title: 'Notifikasi 2',
         isi:
-            'Ada promo murah nih di hotel berikut: Bandung, Jakarta, Bogor. Jangan sampai ketinggalan promo ini!')
+            'Ada promo murah nih di hotel berikut: Bandung, Jakarta, Bogor. Jangan sampai ketinggalan promo ini!'),
+    const Detail(title: 'Notifikasi 3', isi: 'Ini Nao')
   ];
 
   @override
@@ -23,19 +24,49 @@ class _notifikasi extends State<notifikasi> {
         appBar: AppBar(
           title: Text('Notifikasi'),
         ),
-        body: ListView.builder(
+        body: ListView.separated(
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(),
             itemCount: details.length,
             itemBuilder: (context, index) {
               final detail = details[index];
 
-              return Card(
+              return Dismissible(
+                key: Key(detail.title),
+                onDismissed: (direction) {
+                  setState(() {
+                    details.removeAt(index);
+                  });
+                },
                 child: ListTile(
-                    leading: Icon(Icons.notifications),
-                    title: Text(detail.title),
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => secondPage(detail: detail)));
-                    }),
+                  leading: Icon(Icons.notifications),
+                  title: Text(detail.title),
+                  subtitle: Text(detail.isi),
+                  // Pakai Dialog
+                  // onLongPress: () => showDialog<String>(
+                  //   context: context,
+                  //   builder: (BuildContext context) => AlertDialog(
+                  //     title: Text('Hapus'),
+                  //     content:
+                  //         Text('Apakah anda yakin ingin menghapus notifikasi?'),
+                  //     actions: <Widget>[
+                  //       TextButton(
+                  //           onPressed: () {
+                  //             Navigator.of(context).pop();
+                  //           },
+                  //           child: Text('Cancel')),
+                  //       TextButton(
+                  //           onPressed: () {
+                  //             setState(() {
+                  //               details.removeAt(index);
+                  //             });
+                  //             Navigator.of(context).pop();
+                  //           },
+                  //           child: Text('Ok')),
+                  //     ],
+                  //   ),
+                  // ),
+                ),
               );
             }));
   }
@@ -46,38 +77,4 @@ class Detail {
   final String isi;
 
   const Detail({required this.title, required this.isi});
-}
-
-class secondPage extends StatelessWidget {
-  final Detail detail;
-
-  const secondPage({
-    Key? key,
-    required this.detail,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(detail.title),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(right: 25, left: 25, top: 230),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: Text(
-                  detail.title,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Text(
-                detail.isi,
-                textAlign: TextAlign.center,
-              )
-            ],
-          ),
-        ),
-      );
 }
