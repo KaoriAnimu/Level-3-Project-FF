@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'dart:math';
 
-class codePembayaran extends StatelessWidget {
+class codePembayaran extends StatefulWidget {
+  @override
+  State<codePembayaran> createState() => _codePembayaran();
+}
+
+class _codePembayaran extends State<codePembayaran> {
+  final String code = generateRandomString(6);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text('Transaksi'),
         ),
         body: Column(
@@ -15,12 +24,16 @@ class codePembayaran extends StatelessWidget {
               child: Container(
                 alignment: Alignment.center,
                 child: QrImage(
-                  data: 'haha',
+                  data: code,
                   size: 250,
                   embeddedImageStyle:
                       QrEmbeddedImageStyle(size: const Size(100, 100)),
                 ),
               ),
+            ),
+            Text(
+              code,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15),
@@ -50,4 +63,13 @@ class codePembayaran extends StatelessWidget {
           ],
         ));
   }
+}
+
+String generateRandomString(int length) {
+  final random = Random();
+  const availableChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+  final randomString = List.generate(length,
+      (index) => availableChars[random.nextInt(availableChars.length)]).join();
+
+  return randomString;
 }

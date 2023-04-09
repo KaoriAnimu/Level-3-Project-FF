@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "667045423793",
+    "project_id": "travel-hub-5c9bb",
+    "storage_bucket": "travel-hub-5c9bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667045423793:android:876f66bb3afc45f1ff1090",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667045423793-atut7o5fukrnh1k8iujgfrpls3oevcb5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJiWTCylbelbzztBiNNt7Q0Iy6wNvR6X4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667045423793-atut7o5fukrnh1k8iujgfrpls3oevcb5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

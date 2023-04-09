@@ -35,10 +35,15 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   getwidget: ^3.0.1
-  intl: ^0.18.0
+  intl: ^0.17.0
   cached_network_image:
   qr_flutter: ^4.0.0
   hold_down_button: ^1.0.0
+  cloud_firestore: ^4.5.0
+  firebase_auth: ^4.4.0
+  get:
+  firebase_core: ^2.9.0
+  syncfusion_flutter_datepicker: ^21.1.38
 
 dev_dependencies:
   flutter_test:

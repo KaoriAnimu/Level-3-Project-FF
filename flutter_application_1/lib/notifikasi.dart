@@ -24,51 +24,62 @@ class _notifikasi extends State<notifikasi> {
         appBar: AppBar(
           title: Text('Notifikasi'),
         ),
-        body: ListView.separated(
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
-            itemCount: details.length,
-            itemBuilder: (context, index) {
-              final detail = details[index];
+        body: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: ListView.builder(
+              itemCount: details.length,
+              itemBuilder: (context, index) {
+                final detail = details[index];
 
-              return Dismissible(
-                key: Key(detail.title),
-                onDismissed: (direction) {
-                  setState(() {
-                    details.removeAt(index);
-                  });
-                },
-                child: ListTile(
-                  leading: Icon(Icons.notifications),
-                  title: Text(detail.title),
-                  subtitle: Text(detail.isi),
-                  // Pakai Dialog
-                  // onLongPress: () => showDialog<String>(
-                  //   context: context,
-                  //   builder: (BuildContext context) => AlertDialog(
-                  //     title: Text('Hapus'),
-                  //     content:
-                  //         Text('Apakah anda yakin ingin menghapus notifikasi?'),
-                  //     actions: <Widget>[
-                  //       TextButton(
-                  //           onPressed: () {
-                  //             Navigator.of(context).pop();
-                  //           },
-                  //           child: Text('Cancel')),
-                  //       TextButton(
-                  //           onPressed: () {
-                  //             setState(() {
-                  //               details.removeAt(index);
-                  //             });
-                  //             Navigator.of(context).pop();
-                  //           },
-                  //           child: Text('Ok')),
-                  //     ],
-                  //   ),
-                  // ),
-                ),
-              );
-            }));
+                return Dismissible(
+                    key: Key(detail.title),
+                    onDismissed: (direction) {
+                      setState(() {
+                        details.removeAt(index);
+                      });
+                    },
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: Icon(Icons.notifications),
+                          title: Text(detail.title),
+                          subtitle: Text(detail.isi),
+                          // Pakai Dialog
+                          // onLongPress: () => showDialog<String>(
+                          //   context: context,
+                          //   builder: (BuildContext context) => AlertDialog(
+                          //     title: Text('Hapus'),
+                          //     content:
+                          //         Text('Apakah anda yakin ingin menghapus notifikasi?'),
+                          //     actions: <Widget>[
+                          //       TextButton(
+                          //           onPressed: () {
+                          //             Navigator.of(context).pop();
+                          //           },
+                          //           child: Text('Cancel')),
+                          //       TextButton(
+                          //           onPressed: () {
+                          //             setState(() {
+                          //               details.removeAt(index);
+                          //             });
+                          //             Navigator.of(context).pop();
+                          //           },
+                          //           child: Text('Ok')),
+                          //     ],
+                          //   ),
+                          // ),
+                        ),
+                        const Divider(
+                          height: 20,
+                          thickness: 2,
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ));
+              }),
+        ));
   }
 }
 
