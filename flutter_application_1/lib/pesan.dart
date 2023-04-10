@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/metode.dart';
+import 'package:flutter_application_1/pesan_controller.dart';
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 
 class pesanPenginapan extends StatefulWidget {
   @override
@@ -9,8 +11,16 @@ class pesanPenginapan extends StatefulWidget {
 
 class _pesanPenginapan extends State<pesanPenginapan> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _dateIn = TextEditingController();
-  TextEditingController _dateOut = TextEditingController();
+  final controller = Get.put(pesanController());
+
+  DateTime pickedDateIn = DateTime.now();
+  DateTime pickedDateOut = DateTime.now();
+  int total = 0;
+  final formatCurrency = new NumberFormat("#,##0");
+
+  int daysBetween(DateTime from, DateTime to) {
+    return (to.difference(from).inHours / 24).round() * 500000;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +36,13 @@ class _pesanPenginapan extends State<pesanPenginapan> {
               child: Column(
                 children: [
                   TextFormField(
-                    controller: TextEditingController()..text = 'Data',
+                    controller: controller.namaHotel..text = 'Hotel Ibis',
                     enabled: false,
                     decoration: new InputDecoration(
                         labelText: 'Tempat', icon: Icon(Icons.place)),
                   ),
                   TextFormField(
-                    controller: _dateIn,
+                    controller: controller.dateIn,
                     readOnly: true,
                     showCursor: true,
                     decoration: const InputDecoration(
@@ -47,7 +57,8 @@ class _pesanPenginapan extends State<pesanPenginapan> {
 
                       if (pickedDate != null) {
                         setState(() {
-                          _dateIn.text =
+                          pickedDateIn = pickedDate;
+                          controller.dateIn.text =
                               DateFormat('dd-MM-yyyy').format(pickedDate);
                         });
                       }
@@ -60,7 +71,7 @@ class _pesanPenginapan extends State<pesanPenginapan> {
                     },
                   ),
                   TextFormField(
-                    controller: _dateOut,
+                    controller: controller.dateOut,
                     readOnly: true,
                     showCursor: true,
                     decoration: const InputDecoration(
@@ -75,7 +86,8 @@ class _pesanPenginapan extends State<pesanPenginapan> {
 
                       if (pickedDate != null) {
                         setState(() {
-                          _dateOut.text =
+                          pickedDateOut = pickedDate;
+                          controller.dateOut.text =
                               DateFormat('dd-MM-yyyy').format(pickedDate);
                         });
                       }
@@ -88,13 +100,15 @@ class _pesanPenginapan extends State<pesanPenginapan> {
                     },
                   ),
                   TextFormField(
-                    controller: TextEditingController()..text = 'Data',
+                    controller: TextEditingController()..text = 'Rp500,000',
                     enabled: false,
                     decoration: new InputDecoration(
                         labelText: 'Harga Permalam', icon: Icon(Icons.money)),
                   ),
                   TextFormField(
-                    controller: TextEditingController()..text = 'Data',
+                    controller: controller.total
+                      ..text =
+                          'Rp${formatCurrency.format(daysBetween(pickedDateIn, pickedDateOut))}',
                     enabled: false,
                     decoration: new InputDecoration(
                         labelText: 'Total Harga',

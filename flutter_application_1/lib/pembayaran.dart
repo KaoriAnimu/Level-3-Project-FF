@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/metode.dart';
 import 'metode.dart';
+import 'dart:math';
 
 class pembayaran extends StatelessWidget {
   final Detail detail;
+  final String code = generateRandomString(6);
 
-  const pembayaran({
+  pembayaran({
     Key? key,
     required this.detail,
   }) : super(key: key);
@@ -93,4 +95,13 @@ class pembayaran extends StatelessWidget {
           ],
         ));
   }
+}
+
+String generateRandomString(int length) {
+  final random = Random();
+  const availableChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+  final randomString = List.generate(length,
+      (index) => availableChars[random.nextInt(availableChars.length)]).join();
+
+  return randomString;
 }

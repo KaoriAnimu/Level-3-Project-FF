@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home.dart';
+import 'package:flutter_application_1/pesan_controller.dart';
+import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:math';
 
@@ -8,7 +11,7 @@ class codePembayaran extends StatefulWidget {
 }
 
 class _codePembayaran extends State<codePembayaran> {
-  final String code = generateRandomString(6);
+  final controller = Get.put(pesanController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class _codePembayaran extends State<codePembayaran> {
               child: Container(
                 alignment: Alignment.center,
                 child: QrImage(
-                  data: code,
+                  data: controller.code.text,
                   size: 250,
                   embeddedImageStyle:
                       QrEmbeddedImageStyle(size: const Size(100, 100)),
@@ -32,7 +35,7 @@ class _codePembayaran extends State<codePembayaran> {
               ),
             ),
             Text(
-              code,
+              controller.code.text,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Padding(
@@ -53,7 +56,9 @@ class _codePembayaran extends State<codePembayaran> {
                 height: 50,
                 width: 100,
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => homePage());
+                    },
                     style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.red),
@@ -63,13 +68,4 @@ class _codePembayaran extends State<codePembayaran> {
           ],
         ));
   }
-}
-
-String generateRandomString(int length) {
-  final random = Random();
-  const availableChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-  final randomString = List.generate(length,
-      (index) => availableChars[random.nextInt(availableChars.length)]).join();
-
-  return randomString;
 }

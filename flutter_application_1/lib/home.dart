@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/hotel.dart';
 import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/notifikasi.dart';
+import 'package:get/get.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class homePage extends StatefulWidget {
   @override
@@ -43,7 +47,7 @@ class _home extends State<homePage> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(29, 18, 10, 18),
                     child: Container(
-                      width: 212,
+                      width: 312,
                       height: 38,
                       decoration: BoxDecoration(
                         color: Color(0xD4D9D9D9),
@@ -71,7 +75,7 @@ class _home extends State<homePage> {
                               alignment: AlignmentDirectional(0, 0),
                               child: Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: TextFormField(
                                   // controller: _model.textController,
                                   obscureText: false,
@@ -139,23 +143,16 @@ class _home extends State<homePage> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.notifications_none),
+                  icon: Icon(Icons.notifications),
+                  color: Colors.yellow,
                   onPressed: () {
-                    print('IconButton pressed ...');
+                    Get.to(() => notifikasi());
+                    ;
                   },
                 ),
 
                 // color: FlutterFlowTheme.of(context).primaryText,
                 // size: 30,
-
-                Align(
-                    alignment: AlignmentDirectional(0, 0),
-                    child: IconButton(
-                      icon: Icon(Icons.chat_outlined),
-                      onPressed: () {
-                        print('IconButton pressed ...');
-                      },
-                    )),
               ],
             ),
           ),
@@ -170,95 +167,105 @@ class _home extends State<homePage> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(15, 30, 0, 0),
                     child: Text(
-                      'Rekomendasi Hotel',
+                      'Hotel Terdekat',
                       textAlign: TextAlign.start,
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                     child: Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            'images/wisata1.png',
-                            width: 347,
-                            height: 183,
-                            fit: BoxFit.cover,
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                child: Text(
-                                  'Hotel Sanur Beach \nBali',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                              ),
-                              Column(
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(() => hotel());
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'images/wisata1.png',
+                              width: 347,
+                              height: 183,
+                              fit: BoxFit.contain,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 0),
-                                      child: Text(
-                                        'Rp. 350.000,- ~ Rp. 950.000,-',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 0),
+                                    child: Text(
+                                      'Hotel Ibis',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 15),
                                     ),
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Container(),
-                                        // RatingBarIndicator(
-                                        //     rating: 2.5,
-                                        //     itemCount: 5,
-                                        //     itemSize: 30.0,
-                                        //     itemBuilder: (context, _) =>
-                                        //         const Icon(
-                                        //           Icons.star,
-                                        //           color: Colors.yellow,
-                                        //         )),
-                                        // FlutterFlowIconButton(
-                                        //   borderColor: Colors.transparent,
-                                        //   borderRadius: 30,
-                                        //   borderWidth: 1,
-                                        //   buttonSize: 60,
-                                        IconButton(
-                                          icon: Icon(Icons.thumb_up),
-                                          // color:
-                                          //     FlutterFlowTheme.of(context).primaryText,
-                                          // size: 15,
-                                          onPressed: () {
-                                            print('IconButton pressed ...');
-                                          },
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Align(
+                                        alignment: AlignmentDirectional(0, 0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 10, 0, 0),
+                                          child: Text(
+                                            'Rp. 500.000,- / malam',
+                                            style: TextStyle(fontSize: 15),
+                                          ),
                                         ),
+                                      ),
+                                      Align(
+                                        alignment: AlignmentDirectional(0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Container(),
+                                            RatingBarIndicator(
+                                                rating: 4,
+                                                itemCount: 5,
+                                                itemSize: 30.0,
+                                                itemBuilder: (context, _) =>
+                                                    const Icon(
+                                                      Icons.star,
+                                                      color: Colors.yellow,
+                                                    )),
+                                            // FlutterFlowIconButton(
+                                            //   borderColor: Colors.transparent,
+                                            //   borderRadius: 30,
+                                            //   borderWidth: 1,
+                                            //   buttonSize: 60,
+                                            IconButton(
+                                              icon: Icon(Icons.thumb_up),
+                                              // color:
+                                              //     FlutterFlowTheme.of(context).primaryText,
+                                              // size: 15,
+                                              onPressed: () {
+                                                print('IconButton pressed ...');
+                                              },
+                                            ),
 
-                                        // ),
-                                      ],
-                                    ),
+                                            // ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -283,89 +290,99 @@ class _home extends State<homePage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                     child: Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            'images/wisata1.png',
-                            width: 347,
-                            height: 183,
-                            fit: BoxFit.cover,
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                child: Text(
-                                  'FarmHouse Lembang \nJawaBarat',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                              ),
-                              Column(
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(() => hotel());
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'images/wisata1.png',
+                              width: 347,
+                              height: 183,
+                              fit: BoxFit.contain,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 0),
-                                      child: Text(
-                                        'Rp. 50.000,- / Orang',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 10, 0, 0),
+                                    child: Text(
+                                      'FarmHouse Lembang \nJawaBarat',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 15),
                                     ),
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Container(),
-                                        // RatingBarIndicator(
-                                        //     rating: 3,
-                                        //     itemCount: 5,
-                                        //     itemSize: 30.0,
-                                        //     itemBuilder: (context, _) =>
-                                        //         const Icon(
-                                        //           Icons.star,
-                                        //           color: Colors.yellow,
-                                        //         )),
-                                        // FlutterFlowIconButton(
-                                        //   borderColor: Colors.transparent,
-                                        //   borderRadius: 30,
-                                        //   borderWidth: 1,
-                                        //   buttonSize: 60,
-                                        IconButton(
-                                          icon: Icon(Icons.thumb_up),
-                                          // color:
-                                          //     FlutterFlowTheme.of(context).primaryText,
-                                          // size: 15,
-                                          onPressed: () {
-                                            print('IconButton pressed ...');
-                                          },
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Align(
+                                        alignment: AlignmentDirectional(0, 0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 10, 0, 0),
+                                          child: Text(
+                                            'Rp. 50.000,- / malam',
+                                            style: TextStyle(fontSize: 15),
+                                          ),
                                         ),
+                                      ),
+                                      Align(
+                                        alignment: AlignmentDirectional(0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Container(),
+                                            RatingBarIndicator(
+                                                rating: 3,
+                                                itemCount: 5,
+                                                itemSize: 30.0,
+                                                itemBuilder: (context, _) =>
+                                                    const Icon(
+                                                      Icons.star,
+                                                      color: Colors.yellow,
+                                                    )),
+                                            // FlutterFlowIconButton(
+                                            //   borderColor: Colors.transparent,
+                                            //   borderRadius: 30,
+                                            //   borderWidth: 1,
+                                            //   buttonSize: 60,
+                                            IconButton(
+                                              icon: Icon(Icons.thumb_up),
+                                              // color:
+                                              //     FlutterFlowTheme.of(context).primaryText,
+                                              // size: 15,
+                                              onPressed: () {
+                                                print('IconButton pressed ...');
+                                              },
+                                            ),
 
-                                        // ),
-                                      ],
-                                    ),
+                                            // ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -386,7 +403,6 @@ class _home extends State<homePage> {
             child: Text('Logout'),
             onPressed: () {
               FirebaseAuth.instance.signOut();
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
             })
       ],
     ),

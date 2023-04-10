@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/login.dart';
 import 'package:flutter_application_1/pesan.dart';
 import 'package:flutter_application_1/register_controller.dart';
@@ -27,7 +28,7 @@ class _register extends State<register> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Register"),
+          title: Text("Travel Hub"),
         ),
         body: SingleChildScrollView(
           child: Form(
@@ -111,10 +112,10 @@ class _register extends State<register> {
                       hint: Text('Kota'),
                       decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide:
-                                  BorderSide(width: 3, color: Colors.red)),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                           prefixIcon: Icon(Icons.location_city)),
+                      autofocus: false,
                       items: item
                           .map((item) => DropdownMenuItem<String>(
                                 value: item,
@@ -149,11 +150,8 @@ class _register extends State<register> {
                               name: controller.nama.text.trim(),
                               email: controller.email.text.trim(),
                               kota: 'Kota');
+                          registerUser();
                           registerController.instance.createUser(user);
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => LoginPage()));
                         }
                       },
                     ),
@@ -179,6 +177,20 @@ class _register extends State<register> {
             ),
           ),
         ));
+  }
+
+  Future registerUser() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: controller.email.text.trim(),
+        password: controller.password.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.message!), backgroundColor: Colors.red));
+    }
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
 

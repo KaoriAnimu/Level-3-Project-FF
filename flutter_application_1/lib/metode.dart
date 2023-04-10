@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/codeTransaksi.dart';
+import 'package:flutter_application_1/pesan_controller.dart';
+import 'package:flutter_application_1/pesan_model.dart';
+import 'dart:math';
+import 'package:get/get.dart';
 
 class metodePembayaran extends StatefulWidget {
   @override
@@ -61,8 +66,10 @@ class Detail {
 
 class bayarDitempat extends StatelessWidget {
   final Detail detail;
+  final controller = Get.put(pesanController());
+  final user = FirebaseAuth.instance.currentUser!;
 
-  const bayarDitempat({
+  bayarDitempat({
     Key? key,
     required this.detail,
   }) : super(key: key);
@@ -143,8 +150,14 @@ class bayarDitempat extends StatelessWidget {
                   height: 50,
                   child: TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => codePembayaran()));
+                        final pesan = pesanModel(
+                            namaHotel: controller.namaHotel.text.trim(),
+                            dateIn: controller.dateIn.text.trim(),
+                            dateOut: controller.dateOut.text.trim(),
+                            total: controller.total.text.trim(),
+                            code: controller.code.text.trim(),
+                            email: user.email!);
+                        pesanController.instance.createPesan(pesan);
                       },
                       style: TextButton.styleFrom(
                           foregroundColor: Colors.white,
@@ -154,11 +167,27 @@ class bayarDitempat extends StatelessWidget {
                         style: TextStyle(fontSize: 24),
                       )),
                 ),
-              )
+              ),
+              TextField(
+                  controller: controller.code..text = generateRandomString(6),
+                  enabled: false,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                  )),
             ],
           ),
         ));
   }
+}
+
+String generateRandomString(int length) {
+  final random = Random();
+  const availableChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+  final randomString = List.generate(length,
+      (index) => availableChars[random.nextInt(availableChars.length)]).join();
+
+  return randomString;
 }
 
 
