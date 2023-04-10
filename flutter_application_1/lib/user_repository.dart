@@ -12,7 +12,7 @@ class UserRepository extends GetxController {
         .collection("Users")
         .add(user.toJson())
         .whenComplete(
-            () => Get.snackbar("Succes", "You account has been created."))
+            () => Get.snackbar("Success", "You account has been created."))
         .catchError((error, StackTrace) {
       Get.snackbar("Error", "Something went wrong. Try again");
     });

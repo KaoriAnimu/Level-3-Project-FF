@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_1/home.dart';
+import 'package:flutter_application_1/main.dart';
 import 'package:flutter_application_1/pesan.dart';
 import 'package:flutter_application_1/user_model.dart';
 import 'package:flutter_application_1/user_repository.dart';
@@ -18,7 +20,7 @@ class registerController extends GetxController {
   Future<void> createUser(UserModel user) async {
     await userRepo.createUser(user);
     registerUser();
-    Get.to(() => pesanPenginapan()); // Ini ganti
+    Get.to(() => homePage());
   }
 
   Future registerUser() async {

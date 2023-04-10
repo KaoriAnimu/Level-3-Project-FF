@@ -44,6 +44,8 @@ dependencies:
   get:
   firebase_core: ^2.9.0
   syncfusion_flutter_datepicker: ^21.1.38
+  flutter_rating_bar: ^4.0.1
+  email_validator: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +63,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - images/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

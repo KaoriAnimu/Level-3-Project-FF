@@ -1,5 +1,8 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/login.dart';
 import 'package:flutter_application_1/pesan.dart';
 import 'package:flutter_application_1/register_controller.dart';
 import 'package:flutter_application_1/user_model.dart';
@@ -8,6 +11,10 @@ import 'package:flutter_application_1/main.dart';
 import 'package:get/get.dart';
 
 class register extends StatefulWidget {
+  final VoidCallback onClickedSignIn;
+
+  const register({Key? key, required this.onClickedSignIn}) : super(key: key);
+
   @override
   State<register> createState() => _register();
 }
@@ -54,6 +61,12 @@ class _register extends State<register> {
                         labelText: 'Email',
                         hintText: 'Masukkan Email',
                         prefixIcon: Icon(Icons.email)),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (email) {
+                      if (email != null && !EmailValidator.validate(email)) {
+                        return 'Enter Valid email';
+                      }
+                    },
                   ),
                 ),
                 Padding(
@@ -67,11 +80,9 @@ class _register extends State<register> {
                         labelText: 'Password',
                         hintText: 'Masukkan Password',
                         prefixIcon: Icon(Icons.lock)),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Silahkan isi password anda';
-                      }
-                    },
+                    validator: (value) => value != null && value.length < 6
+                        ? 'Masukkan min. 6 char'
+                        : null,
                   ),
                 ),
                 Padding(
@@ -120,8 +131,7 @@ class _register extends State<register> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
-                      left: 30.0, right: 30.0, top: 60.0, bottom: 0),
+                  padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 60.0),
                   child: SizedBox(
                     width: 200,
                     height: 50,
@@ -140,10 +150,30 @@ class _register extends State<register> {
                               email: controller.email.text.trim(),
                               kota: 'Kota');
                           registerController.instance.createUser(user);
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => LoginPage()));
                         }
                       },
                     ),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: RichText(
+                      text: TextSpan(
+                          text: 'Already have an account? ',
+                          style: TextStyle(color: Colors.black, fontSize: 18),
+                          children: [
+                        TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = widget.onClickedSignIn,
+                            text: 'Sign In',
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                color: Colors.red))
+                      ])),
                 )
               ],
             ),
