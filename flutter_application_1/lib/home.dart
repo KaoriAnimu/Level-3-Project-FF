@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/hotel.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_application_1/notifikasi.dart';
+import 'package:flutter_application_1/setting.dart';
 import 'package:get/get.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -394,18 +395,190 @@ class _home extends State<homePage> {
       ],
     )),
     Text('HAHA'),
-    Text('HAHA'),
     Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
       children: [
-        Text(user.email!),
-        TextButton(
-            child: Text('Logout'),
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-            })
+        ListView(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
+                    child: Image.network(
+                      'https://picsum.photos/seed/130/600',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(11, 0, 0, 0),
+                    child: Text(
+                      'Hotel 1',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
+                    child: Image.network(
+                      'https://picsum.photos/seed/130/600',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(11, 0, 0, 0),
+                    child: Text(
+                      'Hotel 2',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ],
     ),
+    Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Container(
+          width: 391.3,
+          height: 48.6,
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+        ),
+        Container(
+          width: 343,
+          height: 69,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(
+              color: Colors.black,
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Align(
+                alignment: AlignmentDirectional(-0.05, 0),
+                child: const Icon(
+                  Icons.person,
+                  color: Colors.black,
+                  size: 32,
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(-1, 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    print('Button pressed ...');
+                  },
+                  child: const Text(
+                    'Data Pribadi',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          width: 391.3,
+          height: 48.6,
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+        ),
+        Container(
+          width: 343,
+          height: 69,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(
+              color: Colors.black,
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Align(
+                alignment: AlignmentDirectional(-0.05, 0),
+                child: Icon(
+                  Icons.settings,
+                  color: Colors.black,
+                  size: 32,
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(-1, 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => settings());
+                  },
+                  child: const Text(
+                    'Settings',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    )
+    // Column(
+    //   mainAxisAlignment: MainAxisAlignment.center,
+    //   children: [
+    //     Text(user.email!),
+    //     TextButton(
+    //         child: Text('Logout'),
+    //         onPressed: () {
+    //           FirebaseAuth.instance.signOut();
+    //         })
+    //   ],
+    // ),
   ];
 
   void _onItemTapped(int index) {
