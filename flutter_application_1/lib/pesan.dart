@@ -36,7 +36,7 @@ class _pesanPenginapan extends State<pesanPenginapan> {
               child: Column(
                 children: [
                   TextFormField(
-                    controller: controller.namaHotel..text = 'Hotel Ibis',
+                    controller: TextEditingController()..text = 'Hotel Ibis',
                     enabled: false,
                     decoration: new InputDecoration(
                         labelText: 'Tempat', icon: Icon(Icons.place)),

@@ -109,6 +109,34 @@ class _register extends State<register> {
                   child: SizedBox(
                     width: 600,
                     child: DropdownButtonFormField<String>(
+                      hint: Text('Provinsi'),
+                      decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          prefixIcon: Icon(Icons.location_city)),
+                      autofocus: false,
+                      items: prov
+                          .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(item),
+                              ))
+                          .toList(),
+                      onChanged: (item) => setState(() => selectedItem = item),
+                      validator: (value) {
+                        if (value == null) {
+                          return 'Pilih Provinsi anda';
+                        }
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: 30.0, right: 30.0, top: 25, bottom: 0),
+                  child: SizedBox(
+                    width: 600,
+                    child: DropdownButtonFormField<String>(
                       hint: Text('Kota'),
                       decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -132,7 +160,7 @@ class _register extends State<register> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 60.0),
+                  padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
                   child: SizedBox(
                     width: 200,
                     height: 50,
@@ -158,7 +186,7 @@ class _register extends State<register> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15),
+                  padding: const EdgeInsets.only(top: 15, bottom: 15),
                   child: RichText(
                       text: TextSpan(
                           text: 'Already have an account? ',
@@ -195,4 +223,5 @@ class _register extends State<register> {
 }
 
 List<String> item = ['Bandung', 'Jakarta', 'Bali'];
+List<String> prov = ['Jawa Barat', 'Jawa Tengah', 'Jawa Timur'];
 String? selectedItem = 'Kota';

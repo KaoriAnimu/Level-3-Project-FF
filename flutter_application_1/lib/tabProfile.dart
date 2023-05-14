@@ -1,22 +1,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/listHotelOwner.dart';
-import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/profile.dart';
 import 'package:get/get.dart';
 
-class settings extends StatefulWidget {
+import 'main.dart';
+
+class tabProfile extends StatefulWidget {
   @override
-  _SettingsState createState() => _SettingsState();
+  State<tabProfile> createState() => _tabProfile();
 }
 
-class _SettingsState extends State<settings> {
+class _tabProfile extends State<tabProfile> {
+  final _formkey = GlobalKey<FormState>();
   final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings"),
+        title: Text('Profile'),
       ),
       body: Padding(
           padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
@@ -24,26 +27,23 @@ class _SettingsState extends State<settings> {
             children: [
               Card(
                 child: ListTile(
+                  leading: Icon(Icons.people),
                   title: Text(
-                    'Informasi Akun',
+                    'Data Pribadi',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => profile()),
+                    );
+                  },
                 ),
               ),
               Card(
                 child: ListTile(
-                  title: Text(
-                    'Password & Security',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 24),
-                  ),
-                  onTap: () {},
-                ),
-              ),
-              Card(
-                child: ListTile(
+                  leading: Icon(Icons.language),
                   title: Text(
                     'Bahasa',
                     textAlign: TextAlign.center,
@@ -54,6 +54,7 @@ class _SettingsState extends State<settings> {
               ),
               Card(
                 child: ListTile(
+                  leading: Icon(Icons.hotel),
                   title: Text(
                     'Register Hotel',
                     textAlign: TextAlign.center,
@@ -66,6 +67,7 @@ class _SettingsState extends State<settings> {
               ),
               Card(
                 child: ListTile(
+                  leading: Icon(Icons.logout),
                   title: Text(
                     'Log Out',
                     textAlign: TextAlign.center,
