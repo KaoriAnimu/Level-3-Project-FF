@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/listHotelOwner.dart';
-import 'package:flutter_application_1/profile.dart';
+import 'package:flutter_application_1/SettingsPage/HotelForOwner/listHotelOwner.dart';
+import 'package:flutter_application_1/SettingsPage/profile.dart';
 import 'package:get/get.dart';
 
-import 'main.dart';
+import '../main.dart';
 
 class tabProfile extends StatefulWidget {
   @override

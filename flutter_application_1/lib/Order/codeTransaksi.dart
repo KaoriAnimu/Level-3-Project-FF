@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home.dart';
-import 'package:flutter_application_1/pesan_controller.dart';
+import 'package:flutter_application_1/controller/pesan_controller.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:math';

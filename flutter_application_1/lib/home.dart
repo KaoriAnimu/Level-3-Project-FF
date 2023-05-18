@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/bookmark.dart';
-import 'package:flutter_application_1/halamanDepan.dart';
-import 'package:flutter_application_1/pesanan.dart';
-import 'package:flutter_application_1/tabProfile.dart';
+import 'package:flutter_application_1/navbar/bookmark.dart';
+import 'package:flutter_application_1/navbar/halamanDepan.dart';
+import 'package:flutter_application_1/navbar/pesanan.dart';
+import 'package:flutter_application_1/navbar/tabProfile.dart';
 
 class homePage extends StatefulWidget {
   @override
@@ -54,8 +54,8 @@ class _home extends State<homePage> {
             label: 'BOOKMARK',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'PROFILE',
+            icon: Icon(Icons.settings),
+            label: 'SETTINGS',
           ),
         ],
       ),

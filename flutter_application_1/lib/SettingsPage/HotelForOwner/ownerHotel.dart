@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/listHotelOwner.dart';
+import 'package:flutter_application_1/SettingsPage/HotelForOwner/listHotelOwner.dart';
 
 class ownerHotel extends StatefulWidget {
   @override

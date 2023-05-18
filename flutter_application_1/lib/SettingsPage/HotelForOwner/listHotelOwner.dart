@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/ownerHotel.dart';
+import 'package:flutter_application_1/SettingsPage/HotelForOwner/ownerHotel.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:getwidget/getwidget.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/hotel.dart';
+import 'package:flutter_application_1/Home/hotel.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
-import 'notifikasi.dart';
+import '../Home/notifikasi.dart';
 
 class halamanDepan extends StatefulWidget {
   @override

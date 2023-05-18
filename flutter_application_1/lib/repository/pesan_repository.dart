@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:flutter_application_1/pesan_model.dart';
+import 'package:flutter_application_1/model/pesan_model.dart';
 
 class pesanRepository extends GetxController {
   static pesanRepository get instance => Get.find();

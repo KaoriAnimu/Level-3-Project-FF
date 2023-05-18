@@ -2,12 +2,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home.dart';
-import 'package:flutter_application_1/login.dart';
-import 'package:flutter_application_1/pesan.dart';
-import 'package:flutter_application_1/register_controller.dart';
-import 'package:flutter_application_1/user_model.dart';
-import 'package:getwidget/getwidget.dart';
+import 'package:flutter_application_1/controller/register_controller.dart';
+import 'package:flutter_application_1/model/user_model.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:get/get.dart';
 
