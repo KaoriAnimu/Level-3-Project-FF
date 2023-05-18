@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/SettingsPage/HotelForOwner/listHotelOwner.dart';
+import 'package:flutter_application_1/controller/ownerHotel_controller.dart';
+import 'package:flutter_application_1/model/ownerHotel_model.dart';
+import 'package:get/get.dart';
 
 class ownerHotel extends StatefulWidget {
   @override
@@ -8,6 +11,8 @@ class ownerHotel extends StatefulWidget {
 
 class _ownerHotel extends State<ownerHotel> {
   final _formkey = GlobalKey<FormState>();
+  final controller = Get.put(ownerHotelController());
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class _ownerHotel extends State<ownerHotel> {
                   padding: EdgeInsets.only(
                       left: 30.0, right: 30.0, top: 50, bottom: 0),
                   child: TextFormField(
-                    // controller: controller,
+                    controller: controller.nama,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Nama Hotel',
@@ -41,7 +46,7 @@ class _ownerHotel extends State<ownerHotel> {
                   padding: EdgeInsets.only(
                       left: 30.0, right: 30.0, top: 25, bottom: 0),
                   child: TextFormField(
-                    // controller: controller,
+                    controller: controller.alamat,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Alamat Hotel',
@@ -59,6 +64,24 @@ class _ownerHotel extends State<ownerHotel> {
                   padding: EdgeInsets.only(
                       left: 30.0, right: 30.0, top: 25, bottom: 0),
                   child: TextFormField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Gambar Hotel',
+                        hintText: 'Masukkan Gambar Hotel',
+                        prefixIcon: Icon(Icons.image)),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Silahkan isi alamat hotel anda';
+                      }
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: 30.0, right: 30.0, top: 25, bottom: 0),
+                  child: TextFormField(
+                    controller: controller.fasilitas,
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     decoration: InputDecoration(
@@ -77,6 +100,7 @@ class _ownerHotel extends State<ownerHotel> {
                   padding: EdgeInsets.only(
                       left: 30.0, right: 30.0, top: 25, bottom: 0),
                   child: TextFormField(
+                    controller: controller.harga,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Harga per malam',
@@ -104,49 +128,18 @@ class _ownerHotel extends State<ownerHotel> {
                       ),
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text("Success"),
-                                  content:
-                                      Text("Hotel anda berhasil ditambahkan"),
-                                  actions: [
-                                    ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                          showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return AlertDialog(
-                                                  content: Text(
-                                                      "Apakah anda ingin megelola hotel anda?"),
-                                                  actions: [
-                                                    ElevatedButton(
-                                                        onPressed: () {
-                                                          Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        listOwnerHotel()),
-                                                          );
-                                                        },
-                                                        child: Text('Ya')),
-                                                    ElevatedButton(
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                        child: Text('Tidak'))
-                                                  ],
-                                                );
-                                              });
-                                        },
-                                        child: Text('Ok'))
-                                  ],
-                                );
-                              });
+                          final data = ownerHotel_Model(
+                              nama: controller.nama.text.trim(),
+                              alamat: controller.alamat.text.trim(),
+                              fasilitas: controller.fasilitas.text.trim(),
+                              harga: controller.harga.text.trim(),
+                              email: user.email!);
+                          ownerHotelController.instance
+                              .createPesan(data, context);
+                          controller.nama.text = '';
+                          controller.alamat.text = '';
+                          controller.fasilitas.text = '';
+                          controller.harga.text = '';
                         }
                       },
                     ),
@@ -158,3 +151,47 @@ class _ownerHotel extends State<ownerHotel> {
         ));
   }
 }
+
+// showDialog(
+//                               context: context,
+//                               builder: (BuildContext context) {
+//                                 return AlertDialog(
+//                                   title: Text("Success"),
+//                                   content:
+//                                       Text("Hotel anda berhasil ditambahkan"),
+//                                   actions: [
+//                                     ElevatedButton(
+//                                         onPressed: () {
+//                                           Navigator.of(context).pop();
+//                                           showDialog(
+//                                               context: context,
+//                                               builder: (BuildContext context) {
+//                                                 return AlertDialog(
+//                                                   content: Text(
+//                                                       "Apakah anda ingin megelola hotel anda?"),
+//                                                   actions: [
+//                                                     ElevatedButton(
+//                                                         onPressed: () {
+//                                                           Navigator.push(
+//                                                             context,
+//                                                             MaterialPageRoute(
+//                                                                 builder:
+//                                                                     (context) =>
+//                                                                         listOwnerHotel()),
+//                                                           );
+//                                                         },
+//                                                         child: Text('Ya')),
+//                                                     ElevatedButton(
+//                                                         onPressed: () {
+//                                                           Navigator.of(context)
+//                                                               .pop();
+//                                                         },
+//                                                         child: Text('Tidak'))
+//                                                   ],
+//                                                 );
+//                                               });
+//                                         },
+//                                         child: Text('Ok'))
+//                                   ],
+//                                 );
+//                               });
