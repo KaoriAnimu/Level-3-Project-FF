@@ -61,7 +61,7 @@ class _codePembayaran extends State<codePembayaran> {
                     },
                     style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: Colors.red),
+                        backgroundColor: Color(0xFFFF0000)),
                     child: Text('Lanjutkan')),
               ),
             )

@@ -161,7 +161,7 @@ class bayarDitempat extends StatelessWidget {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor: Colors.white,
-                          backgroundColor: Colors.red),
+                          backgroundColor: Color(0xFFFF0000)),
                       child: Text(
                         'Pesan',
                         style: TextStyle(fontSize: 24),

@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../SettingsPage/HotelForOwner/ownerHotel.dart';
 
 class pesanan extends StatefulWidget {
   @override
@@ -8,104 +11,41 @@ class pesanan extends StatefulWidget {
 class _pesanan extends State<pesanan> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+    final Stream<QuerySnapshot> users = FirebaseFirestore.instance
+        .collection(
+          'pesan',
+        )
+        .where('email', isEqualTo: user.email)
+        .snapshots();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFFFF0000),
-        automaticallyImplyLeading: true,
-        title: Align(
-          alignment: AlignmentDirectional(0, 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Align(
-                alignment: AlignmentDirectional(-1, 0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
-                  child: InkWell(
-                    onTap: () async {},
-                    child: Text(
-                      'Pesanan',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          title: Text('Pesanan Anda'),
+          automaticallyImplyLeading: false,
         ),
-        actions: [],
-        centerTitle: false,
-        elevation: 4,
-      ),
-      body: SafeArea(
-        child: GestureDetector(
-          // onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
-                          child: Image.network(
-                            'https://picsum.photos/seed/130/600',
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(11, 0, 0, 0),
-                          child: Text(
-                            'Wisata 1',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
-                          child: Image.network(
-                            'https://picsum.photos/seed/130/600',
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(11, 0, 0, 0),
-                          child: Text(
-                            'Penginapan 1',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+        body: StreamBuilder<QuerySnapshot>(
+          stream: users,
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Text("Loading");
+            }
+
+            return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()! as Map<String, dynamic>;
+                return ListTile(
+                  title: Text('${data['code']}'),
+                  subtitle: Text('${data['total']}'),
+                );
+              }).toList(),
+            );
+          },
+        ));
   }
 }

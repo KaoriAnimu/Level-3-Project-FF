@@ -128,7 +128,7 @@ class _pesanPenginapan extends State<pesanPenginapan> {
                             },
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.white,
-                                backgroundColor: Colors.red),
+                                backgroundColor: Color(0xFFFF0000)),
                             child: Text('Pilih Metode Pembayaran')),
                       ))
                 ],

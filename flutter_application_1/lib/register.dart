@@ -166,7 +166,7 @@ class _register extends State<register> {
                         style: TextStyle(color: Colors.white),
                       ),
                       style: TextButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: Color(0xFFFF0000),
                       ),
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
@@ -194,7 +194,7 @@ class _register extends State<register> {
                             text: 'Sign In',
                             style: TextStyle(
                                 decoration: TextDecoration.underline,
-                                color: Colors.red))
+                                color: Color(0xFFFF0000)))
                       ])),
                 )
               ],
@@ -211,8 +211,8 @@ class _register extends State<register> {
       );
     } on FirebaseAuthException catch (e) {
       print(e);
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message!), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(e.message!), backgroundColor: Color(0xFFFF0000)));
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }

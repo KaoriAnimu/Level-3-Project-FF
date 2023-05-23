@@ -20,6 +20,7 @@ class _tabProfile extends State<tabProfile> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
           padding: const EdgeInsets.only(top: 30, left: 15, right: 15),

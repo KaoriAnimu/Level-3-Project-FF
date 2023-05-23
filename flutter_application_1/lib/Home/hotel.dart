@@ -108,7 +108,7 @@ class _hotel extends State<hotel> {
                     style: TextStyle(color: Colors.white),
                   ),
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Color(0xFFFF0000),
                   ),
                   onPressed: () {
                     Get.to(() => pesanPenginapan());

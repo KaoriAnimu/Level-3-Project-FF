@@ -26,7 +26,7 @@ class _BookmarkState extends State<Bookmark> {
       // backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: Color(0xFFFF0000),
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: Align(
           alignment: AlignmentDirectional(0, 0),
           child: Row(

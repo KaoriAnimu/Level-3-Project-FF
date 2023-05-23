@@ -36,7 +36,7 @@ class _home extends State<homePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromARGB(255, 207, 12, 12),
+        selectedItemColor: Color(0xFFFF0000),
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         onTap: _onItemTapped,

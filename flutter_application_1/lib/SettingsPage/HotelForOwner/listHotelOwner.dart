@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/SettingsPage/HotelForOwner/ownerHotel.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:getwidget/getwidget.dart';
 
 class listOwnerHotel extends StatefulWidget {
   @override
@@ -11,22 +9,13 @@ class listOwnerHotel extends StatefulWidget {
 }
 
 class _listOwnerHotel extends State<listOwnerHotel> {
-  List<Detail> details = [
-    const Detail(
-      title: 'Hotel 1',
-      urlPict: '#',
-    ),
-    const Detail(
-      title: 'Hotel 2',
-      urlPict: '#',
-    )
-  ];
-
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
-    final Stream<QuerySnapshot> users =
-        FirebaseFirestore.instance.collection('Hotel').snapshots();
+    final Stream<QuerySnapshot> users = FirebaseFirestore.instance
+        .collection('Hotel')
+        .where('email', isEqualTo: user.email)
+        .snapshots();
 
     return Scaffold(
         appBar: AppBar(
@@ -69,12 +58,6 @@ class _listOwnerHotel extends State<listOwnerHotel> {
   }
 }
 
-class Detail {
-  final String title;
-  final String urlPict;
-
-  const Detail({required this.title, required this.urlPict});
-}
 
 // ListView.builder(
 //             itemCount: details.length,
