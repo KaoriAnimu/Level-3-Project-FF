@@ -15,11 +15,13 @@ class pesanController extends GetxController {
   final total = TextEditingController();
   final code = TextEditingController();
   final email = TextEditingController();
+  String codeQr = '';
 
   final pesanRepo = Get.put(pesanRepository());
 
   Future<void> createPesan(pesanModel user) async {
     await pesanRepo.createPesan(user);
-    Get.to(() => codePembayaran());
+    codeQr = code.text.toString();
+    Get.to(() => codePembayaran(code: codeQr));
   }
 }

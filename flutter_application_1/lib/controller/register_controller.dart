@@ -10,6 +10,7 @@ class registerController extends GetxController {
   final nama = TextEditingController();
   final kota = TextEditingController();
   final password = TextEditingController();
+  final password2nd = TextEditingController();
 
   final userRepo = Get.put(UserRepository());
 

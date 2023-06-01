@@ -86,6 +86,7 @@ class _register extends State<register> {
                   padding: EdgeInsets.only(
                       left: 30.0, right: 30.0, top: 25, bottom: 0),
                   child: TextFormField(
+                    controller: controller.password2nd,
                     obscureText: true,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -95,6 +96,9 @@ class _register extends State<register> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Silahkan isi kembali password anda';
+                      } else if (controller.password.text !=
+                          controller.password2nd.text) {
+                        return 'Password anda tidak cocok';
                       }
                     },
                   ),
@@ -176,6 +180,10 @@ class _register extends State<register> {
                               kota: 'Kota');
                           registerUser();
                           registerController.instance.createUser(user);
+                          controller.nama.text = '';
+                          controller.email.text = '';
+                          controller.password.text = '';
+                          controller.password2nd.text = '';
                         }
                       },
                     ),
