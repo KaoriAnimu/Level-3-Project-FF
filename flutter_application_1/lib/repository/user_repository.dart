@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:flutter_application_1/user_model.dart';
+import 'package:flutter_application_1/model/user_model.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
@@ -16,5 +16,14 @@ class UserRepository extends GetxController {
         .catchError((error, StackTrace) {
       Get.snackbar("Error", "Something went wrong. Try again");
     });
+  }
+
+  Future<void> updateUser(UserModel user, String document) {
+    return _db
+        .collection("Users")
+        .doc(document)
+        .update(user.toJson())
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
   }
 }

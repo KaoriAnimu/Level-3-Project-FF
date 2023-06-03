@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home.dart';
-import 'package:flutter_application_1/pesan_controller.dart';
+import 'package:flutter_application_1/controller/pesan_controller.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:math';
 
-class codePembayaran extends StatefulWidget {
-  @override
-  State<codePembayaran> createState() => _codePembayaran();
-}
+class codePembayaran extends StatelessWidget {
+  String code;
 
-class _codePembayaran extends State<codePembayaran> {
+  codePembayaran({Key? key, required this.code}) : super(key: key);
   final controller = Get.put(pesanController());
 
   @override
@@ -27,7 +25,7 @@ class _codePembayaran extends State<codePembayaran> {
               child: Container(
                 alignment: Alignment.center,
                 child: QrImage(
-                  data: controller.code.text,
+                  data: code,
                   size: 250,
                   embeddedImageStyle:
                       QrEmbeddedImageStyle(size: const Size(100, 100)),
@@ -35,7 +33,7 @@ class _codePembayaran extends State<codePembayaran> {
               ),
             ),
             Text(
-              controller.code.text,
+              code,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Padding(
@@ -61,7 +59,7 @@ class _codePembayaran extends State<codePembayaran> {
                     },
                     style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: Colors.red),
+                        backgroundColor: Color(0xFFFF0000)),
                     child: Text('Lanjutkan')),
               ),
             )

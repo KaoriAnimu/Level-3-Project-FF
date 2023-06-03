@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pesan.dart';
+import 'package:flutter_application_1/Order/pesan.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class hotel extends StatefulWidget {
   @override
@@ -110,7 +108,7 @@ class _hotel extends State<hotel> {
                     style: TextStyle(color: Colors.white),
                   ),
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Color(0xFFFF0000),
                   ),
                   onPressed: () {
                     Get.to(() => pesanPenginapan());

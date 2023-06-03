@@ -124,7 +124,7 @@ class _LoginPage extends State<LoginPage> {
                               text: 'Register',
                               style: TextStyle(
                                   decoration: TextDecoration.underline,
-                                  color: Colors.red))
+                                  color: Color(0xFFFF0000)))
                         ])),
                   )
                 ],
@@ -143,8 +143,8 @@ class _LoginPage extends State<LoginPage> {
           password: passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
       print(e);
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message!), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(e.message!), backgroundColor: Color(0xFFFF0000)));
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);

@@ -2,12 +2,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home.dart';
-import 'package:flutter_application_1/login.dart';
-import 'package:flutter_application_1/pesan.dart';
-import 'package:flutter_application_1/register_controller.dart';
-import 'package:flutter_application_1/user_model.dart';
-import 'package:getwidget/getwidget.dart';
+import 'package:flutter_application_1/controller/register_controller.dart';
+import 'package:flutter_application_1/model/user_model.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:get/get.dart';
 
@@ -90,6 +86,7 @@ class _register extends State<register> {
                   padding: EdgeInsets.only(
                       left: 30.0, right: 30.0, top: 25, bottom: 0),
                   child: TextFormField(
+                    controller: controller.password2nd,
                     obscureText: true,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -99,6 +96,9 @@ class _register extends State<register> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Silahkan isi kembali password anda';
+                      } else if (controller.password.text !=
+                          controller.password2nd.text) {
+                        return 'Password anda tidak cocok';
                       }
                     },
                   ),
@@ -170,7 +170,7 @@ class _register extends State<register> {
                         style: TextStyle(color: Colors.white),
                       ),
                       style: TextButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: Color(0xFFFF0000),
                       ),
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
@@ -180,6 +180,10 @@ class _register extends State<register> {
                               kota: 'Kota');
                           registerUser();
                           registerController.instance.createUser(user);
+                          controller.nama.text = '';
+                          controller.email.text = '';
+                          controller.password.text = '';
+                          controller.password2nd.text = '';
                         }
                       },
                     ),
@@ -198,7 +202,7 @@ class _register extends State<register> {
                             text: 'Sign In',
                             style: TextStyle(
                                 decoration: TextDecoration.underline,
-                                color: Colors.red))
+                                color: Color(0xFFFF0000)))
                       ])),
                 )
               ],
@@ -215,8 +219,8 @@ class _register extends State<register> {
       );
     } on FirebaseAuthException catch (e) {
       print(e);
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message!), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(e.message!), backgroundColor: Color(0xFFFF0000)));
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
