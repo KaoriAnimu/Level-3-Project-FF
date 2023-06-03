@@ -1,16 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:getwidget/getwidget.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Bookmark(),
-    );
-  }
-}
+import 'package:flutter_application_1/Home/hotel.dart';
+import 'package:get/get.dart';
 
 class Bookmark extends StatefulWidget {
   @override
@@ -20,107 +12,49 @@ class Bookmark extends StatefulWidget {
 class _BookmarkState extends State<Bookmark> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    final user = FirebaseAuth.instance.currentUser!;
+    final Stream<QuerySnapshot> users = FirebaseFirestore.instance
+        .collection(
+          'Bookmark',
+        )
+        .where('email', isEqualTo: user.email)
+        .snapshots();
     return Scaffold(
-      // key: scaffoldKey,
-      // backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      appBar: AppBar(
-        backgroundColor: Color(0xFFFF0000),
-        automaticallyImplyLeading: false,
-        title: Align(
-          alignment: AlignmentDirectional(0, 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Align(
-                alignment: AlignmentDirectional(-1, 0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
-                  child: InkWell(
-                    onTap: () async {},
-                    child: Text(
-                      'Bookmark',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          title: Text('Bookmark'),
+          automaticallyImplyLeading: false,
         ),
-        actions: [],
-        centerTitle: false,
-        elevation: 4,
-      ),
-      body: SafeArea(
-        child: GestureDetector(
-          // onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
-                          child: Image.network(
-                            'https://picsum.photos/seed/130/600',
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(11, 0, 0, 0),
-                          child: Text(
-                            'Wisata 1',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
-                          child: Image.network(
-                            'https://picsum.photos/seed/130/600',
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(11, 0, 0, 0),
-                          child: Text(
-                            'Penginapan 1',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+        body: StreamBuilder<QuerySnapshot>(
+          stream: users,
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: Text('Something went wrong'));
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: Text("Loading"));
+            }
+            if (!snapshot.hasData) {
+              return Center(child: Text('Data kosong'));
+            }
+
+            return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()! as Map<String, dynamic>;
+                return ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => hotel()),
+                    );
+                  },
+                  title: Text('${data['nama']}'),
+                  subtitle: Text('${data['alamat']}'),
+                );
+              }).toList(),
+            );
+          },
+        ));
   }
 }

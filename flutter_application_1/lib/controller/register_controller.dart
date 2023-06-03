@@ -12,9 +12,16 @@ class registerController extends GetxController {
   final password = TextEditingController();
   final password2nd = TextEditingController();
 
+  final namaEdit = TextEditingController();
+  final kotaEdit = TextEditingController();
+
   final userRepo = Get.put(UserRepository());
 
   Future<void> createUser(UserModel user) async {
     await userRepo.createUser(user);
+  }
+
+  Future<void> editPesan(UserModel user, String document) async {
+    await userRepo.updateUser(user, document);
   }
 }

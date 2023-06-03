@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/SettingsPage/HotelForOwner/listHotelOwner.dart';
+import 'package:flutter_application_1/SettingsPage/Informasi/informasiAkun.dart';
 import 'package:flutter_application_1/SettingsPage/profile.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,6 @@ class tabProfile extends StatefulWidget {
 }
 
 class _tabProfile extends State<tabProfile> {
-  final _formkey = GlobalKey<FormState>();
   final user = FirebaseAuth.instance.currentUser!;
 
   @override
@@ -30,23 +30,20 @@ class _tabProfile extends State<tabProfile> {
                 child: ListTile(
                   leading: Icon(Icons.people),
                   title: Text(
-                    'Data Pribadi',
+                    'Informasi Akun',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
                   ),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => profile()),
-                    );
+                    Get.to(() => informasiAkun());
                   },
                 ),
               ),
               Card(
                 child: ListTile(
-                  leading: Icon(Icons.language),
+                  leading: Icon(Icons.lock),
                   title: Text(
-                    'Bahasa',
+                    'Password & Security',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
                   ),

@@ -17,4 +17,13 @@ class UserRepository extends GetxController {
       Get.snackbar("Error", "Something went wrong. Try again");
     });
   }
+
+  Future<void> updateUser(UserModel user, String document) {
+    return _db
+        .collection("Users")
+        .doc(document)
+        .update(user.toJson())
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
 }

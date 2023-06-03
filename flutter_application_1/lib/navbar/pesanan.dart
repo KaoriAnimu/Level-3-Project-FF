@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Order/codeTransaksi.dart';
-import '../SettingsPage/HotelForOwner/ownerHotel.dart';
 
 class pesanan extends StatefulWidget {
   @override

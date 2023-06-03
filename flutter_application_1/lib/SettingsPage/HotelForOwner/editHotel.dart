@@ -11,7 +11,6 @@ class editHotel extends StatelessWidget {
   final controller = Get.put(ownerHotelController());
   final user = FirebaseAuth.instance.currentUser!;
   CollectionReference users = FirebaseFirestore.instance.collection('Hotel');
-
   editHotel({Key? key, required this.documentId}) : super(key: key);
 
   @override

@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_1/model/bookmark_model.dart';
 import 'package:flutter_application_1/model/ownerHotel_model.dart';
+import 'package:flutter_application_1/repository/bookmark_repository.dart';
 import 'package:flutter_application_1/repository/ownerHotel_repository.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +24,15 @@ class ownerHotelController extends GetxController {
   final hargaEdit = TextEditingController();
 
   final ownerHotelRepo = Get.put(ownerHotelRepository());
+  final bookmarkRepo = Get.put(BookmarkRepository());
 
   Future<void> createPesan(ownerHotel_Model user, BuildContext context) async {
     await ownerHotelRepo.createPesan(user);
+    dialogDone(context);
+  }
+
+  Future<void> createBookmark(bookmark_Model user, BuildContext context) async {
+    await bookmarkRepo.createUser(user);
     dialogDone(context);
   }
 
