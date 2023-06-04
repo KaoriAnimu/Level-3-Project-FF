@@ -65,26 +65,6 @@ class informasiAkun extends StatelessWidget {
                           padding: EdgeInsets.only(
                               left: 30.0, right: 30.0, top: 25, bottom: 0),
                           child: TextFormField(
-                            controller: controller.kotaEdit
-                              ..text = data['kota'],
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Kota',
-                                hintText: 'Masukkan Kota Anda',
-                                prefixIcon: Icon(Icons.location_city)),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Silahkan isi Kota anda';
-                              }
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: 30.0, right: 30.0, top: 25, bottom: 0),
-                          child: TextFormField(
                             controller: controller.email..text = user.email!,
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
@@ -112,9 +92,9 @@ class informasiAkun extends StatelessWidget {
                               onPressed: () {
                                 if (_formkey.currentState!.validate()) {
                                   final datas = UserModel(
-                                      name: controller.namaEdit.text,
-                                      email: user.email!,
-                                      kota: controller.kotaEdit.text);
+                                    name: controller.namaEdit.text,
+                                    email: user.email!,
+                                  );
                                   registerController.instance
                                       .editPesan(datas, document.id);
                                 }

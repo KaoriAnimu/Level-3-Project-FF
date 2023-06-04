@@ -104,62 +104,6 @@ class _register extends State<register> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
-                      left: 30.0, right: 30.0, top: 25, bottom: 0),
-                  child: SizedBox(
-                    width: 600,
-                    child: DropdownButtonFormField<String>(
-                      hint: Text('Provinsi'),
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          prefixIcon: Icon(Icons.location_city)),
-                      autofocus: false,
-                      items: prov
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(item),
-                              ))
-                          .toList(),
-                      onChanged: (item) => setState(() => selectedItem = item),
-                      validator: (value) {
-                        if (value == null) {
-                          return 'Pilih Provinsi anda';
-                        }
-                      },
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: 30.0, right: 30.0, top: 25, bottom: 0),
-                  child: SizedBox(
-                    width: 600,
-                    child: DropdownButtonFormField<String>(
-                      hint: Text('Kota'),
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          prefixIcon: Icon(Icons.location_city)),
-                      autofocus: false,
-                      items: item
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(item),
-                              ))
-                          .toList(),
-                      onChanged: (item) => setState(() => selectedItem = item),
-                      validator: (value) {
-                        if (value == null) {
-                          return 'Pilih kota anda';
-                        }
-                      },
-                    ),
-                  ),
-                ),
-                Padding(
                   padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
                   child: SizedBox(
                     width: 200,
@@ -175,9 +119,9 @@ class _register extends State<register> {
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
                           final user = UserModel(
-                              name: controller.nama.text.trim(),
-                              email: controller.email.text.trim(),
-                              kota: 'Kota');
+                            name: controller.nama.text.trim(),
+                            email: controller.email.text.trim(),
+                          );
                           registerUser();
                           registerController.instance.createUser(user);
                           controller.nama.text = '';
