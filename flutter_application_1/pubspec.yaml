@@ -47,6 +47,8 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   email_validator: ^2.0.1
   image_picker: ^0.8.7+5
+  file_picker: ^5.3.1
+  firebase_storage: ^11.2.2
 
 dev_dependencies:
   flutter_test:

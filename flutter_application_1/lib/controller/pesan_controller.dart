@@ -22,6 +22,9 @@ class pesanController extends GetxController {
   Future<void> createPesan(pesanModel user) async {
     await pesanRepo.createPesan(user);
     codeQr = code.text.toString();
-    Get.to(() => codePembayaran(code: codeQr));
+    Get.to(() => codePembayaran(
+          code: codeQr,
+          harga: total.text,
+        ));
   }
 }

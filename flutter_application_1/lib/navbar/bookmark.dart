@@ -46,7 +46,11 @@ class _BookmarkState extends State<Bookmark> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => hotel()),
+                      MaterialPageRoute(
+                          builder: (context) => hotel(
+                                documentId: document.id,
+                                path: 'Bookmark',
+                              )),
                     );
                   },
                   title: Text('${data['nama']}'),

@@ -5,6 +5,9 @@ class bookmark_Model {
   final String fasilitas;
   final String harga;
   final String email;
+  final String gambarUrl;
+  final String gambarNama;
+  final String deskripsi;
 
   const bookmark_Model(
       {this.id,
@@ -12,14 +15,20 @@ class bookmark_Model {
       required this.alamat,
       required this.fasilitas,
       required this.harga,
-      required this.email});
+      required this.email,
+      required this.gambarNama,
+      required this.gambarUrl,
+      required this.deskripsi});
   toJson() {
     return {
       "nama": nama,
       "alamat": alamat,
       "fasilitas": fasilitas,
       "harga": harga,
-      "email": email
+      "email": email,
+      "gambarNama": gambarNama,
+      "gambar": gambarUrl,
+      "deskripsi": deskripsi
     };
   }
 }

@@ -17,11 +17,15 @@ class ownerHotelController extends GetxController {
   final fasilitas = TextEditingController();
   final harga = TextEditingController();
   final email = TextEditingController();
+  final gambar = TextEditingController();
+  final deskripsi = TextEditingController();
 
   final namaEdit = TextEditingController();
   final alamatEdit = TextEditingController();
   final fasilitasEdit = TextEditingController();
   final hargaEdit = TextEditingController();
+  final gambarEdit = TextEditingController();
+  final deskripsiEdit = TextEditingController();
 
   final ownerHotelRepo = Get.put(ownerHotelRepository());
   final bookmarkRepo = Get.put(BookmarkRepository());
@@ -39,7 +43,7 @@ class ownerHotelController extends GetxController {
   Future<void> editPesan(
       ownerHotel_Model user, BuildContext context, String document) async {
     await ownerHotelRepo.updateUser(user, document);
-    dialogDone(context);
+    dialogUpdateDone(context);
   }
 
   void dialogDone(BuildContext context) {

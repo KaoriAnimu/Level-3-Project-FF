@@ -46,6 +46,7 @@ class _pesanan extends State<pesanan> {
                       MaterialPageRoute(
                           builder: (context) => codePembayaran(
                                 code: data['code'],
+                                harga: data['total'],
                               )),
                     );
                   },

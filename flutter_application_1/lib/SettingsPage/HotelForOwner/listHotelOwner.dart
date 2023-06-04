@@ -52,12 +52,6 @@ class _listOwnerHotel extends State<listOwnerHotel> {
               );
             }
 
-            if (snapshot.hasData != false) {
-              return Center(
-                child: Text("Data Kosong"),
-              );
-            }
-
             return ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =

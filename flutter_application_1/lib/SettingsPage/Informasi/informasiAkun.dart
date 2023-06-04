@@ -88,6 +88,7 @@ class informasiAkun extends StatelessWidget {
                             controller: controller.email..text = user.email!,
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
+                            enabled: false,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Email',

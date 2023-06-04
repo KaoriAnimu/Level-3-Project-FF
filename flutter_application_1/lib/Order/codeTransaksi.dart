@@ -6,9 +6,10 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:math';
 
 class codePembayaran extends StatelessWidget {
-  String code;
+  String code, harga;
 
-  codePembayaran({Key? key, required this.code}) : super(key: key);
+  codePembayaran({Key? key, required this.code, required this.harga})
+      : super(key: key);
   final controller = Get.put(pesanController());
 
   @override
@@ -43,7 +44,7 @@ class codePembayaran extends StatelessWidget {
                 width: 250,
                 height: 150,
                 child: Text(
-                  'Tunjukkan code tersebut kepada reservasi penginapan dan siapkan uang Rp.xxx.xxx',
+                  'Tunjukkan code tersebut kepada reservasi penginapan dan siapkan uang sebesar ${harga}.-',
                   style: TextStyle(fontSize: 24),
                 ),
               ),
