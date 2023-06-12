@@ -6,6 +6,7 @@ class pesanModel {
   final String total;
   final String code;
   final String email;
+  final String approve;
 
   const pesanModel(
       {this.id,
@@ -14,7 +15,8 @@ class pesanModel {
       required this.dateOut,
       required this.total,
       required this.code,
-      required this.email});
+      required this.email,
+      required this.approve});
   toJson() {
     return {
       "hotel": namaHotel,
@@ -22,7 +24,8 @@ class pesanModel {
       "dateOut": dateOut,
       "total": total,
       "code": code,
-      "email": email
+      "email": email,
+      "approve": approve
     };
   }
 }

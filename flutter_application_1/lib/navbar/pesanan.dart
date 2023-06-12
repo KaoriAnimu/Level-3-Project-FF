@@ -28,11 +28,15 @@ class _pesanan extends State<pesanan> {
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text('Something went wrong');
+              return Center(child: Text('Something went wrong'));
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
+              return Center(child: Text("Loading"));
+            }
+
+            if (snapshot.hasData) {
+              return Center(child: Text('Pesanan Kosong'));
             }
 
             return ListView(
@@ -41,15 +45,38 @@ class _pesanan extends State<pesanan> {
                     document.data()! as Map<String, dynamic>;
                 return ListTile(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => codePembayaran(
-                                code: data['code'],
-                                harga: data['total'],
-                              )),
-                    );
+                    if (data['approve'] != 'no') {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Success"),
+                              content: Text("Pesanan anda sudah diterima."),
+                              actions: [
+                                ElevatedButton(
+                                    onPressed: () {
+                                      FirebaseFirestore.instance
+                                          .collection("pesan")
+                                          .doc(document.id)
+                                          .delete();
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Ok'))
+                              ],
+                            );
+                          });
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => codePembayaran(
+                                  code: data['code'],
+                                  harga: data['total'],
+                                )),
+                      );
+                    }
                   },
+                  onLongPress: () {},
                   title: Text('${data['code']}'),
                   subtitle: Text('${data['total']}'),
                 );

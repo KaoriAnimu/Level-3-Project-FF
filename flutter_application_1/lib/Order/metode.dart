@@ -127,7 +127,8 @@ class bayarDitempat extends StatelessWidget {
                             dateOut: controller.dateOut.text.trim(),
                             total: controller.total.text.trim(),
                             code: controller.code.text.trim(),
-                            email: user.email!);
+                            email: user.email!,
+                            approve: 'no');
                         pesanController.instance.createPesan(pesan);
                       },
                       style: TextButton.styleFrom(

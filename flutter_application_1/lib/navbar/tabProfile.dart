@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/SettingsPage/HotelForOwner/listHotelOwner.dart';
 import 'package:flutter_application_1/SettingsPage/Informasi/informasiAkun.dart';
 import 'package:flutter_application_1/SettingsPage/passwordNsecurity.dart';
-import 'package:flutter_application_1/SettingsPage/profile.dart';
 import 'package:get/get.dart';
 
 import '../main.dart';

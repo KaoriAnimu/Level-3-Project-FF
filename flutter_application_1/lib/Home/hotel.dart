@@ -30,11 +30,15 @@ class _hotel extends State<hotel> {
           builder:
               (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text("Something went wrong");
+              return Center(child: Text("Something went wrong"));
             }
 
             if (snapshot.hasData && !snapshot.data!.exists) {
-              return Text("Document does not exist");
+              return Center(child: Text("Document does not exist"));
+            }
+
+            if (snapshot.hasData) {
+              return Center(child: Text('Hotel Kosong'));
             }
 
             if (snapshot.connectionState == ConnectionState.done) {
