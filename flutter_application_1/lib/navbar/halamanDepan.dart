@@ -8,8 +8,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../Home/notifikasi.dart';
-
 class halamanDepan extends StatefulWidget {
   @override
   State<halamanDepan> createState() => _halamanDepan();
@@ -36,133 +34,7 @@ class _halamanDepan extends State<halamanDepan> {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Align(
-            alignment: AlignmentDirectional(0, 0),
-            child: Container(
-              width: double.infinity,
-              height: 70,
-              decoration: BoxDecoration(
-                color: Color(0xFFFF0000),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 5,
-                    color: Color(0x4D000000),
-                    offset: Offset(0, 2),
-                  )
-                ],
-                shape: BoxShape.rectangle,
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: AlignmentDirectional(0, 0),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(29, 18, 10, 18),
-                      child: Container(
-                        width: 312,
-                        height: 38,
-                        decoration: BoxDecoration(
-                          color: Color(0xD4D9D9D9),
-                          borderRadius: BorderRadius.circular(10),
-                          shape: BoxShape.rectangle,
-                        ),
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(0, 0),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                                child: Icon(
-                                  Icons.search,
-                                  color: Colors.black,
-                                  size: 24,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(0, 0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 0, 0, 0),
-                                  child: TextFormField(
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      hintText: 'Pencarian',
-                                      enabledBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      errorBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      focusedErrorBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0, 0, 0, 10),
-                                    ),
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Padding(
-                  //   padding: EdgeInsets.only(),
-                  //   child: IconButton(
-                  //     icon: Icon(Icons.notifications),
-                  //     color: Colors.yellow,
-                  //     onPressed: () {
-                  //       Get.to(() => notifikasi());
-                  //     },
-                  //   ),
-                  // ),
-                ],
-              ),
-            ),
-          ),
+          title: Text('Travel Hub'),
         ),
         body: StreamBuilder<QuerySnapshot>(
           stream: users,
@@ -174,8 +46,8 @@ class _halamanDepan extends State<halamanDepan> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: Text("Loading"));
             }
-            if (!snapshot.hasData) {
-              return Center(child: Text('Data kosong'));
+            if (snapshot.hasData) {
+              return Center(child: Text('Hotel kosong'));
             }
 
             return ListView(

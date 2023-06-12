@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/controller/pesan_controller.dart';
+import 'package:flutter_application_1/main.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:math';
@@ -56,7 +57,8 @@ class codePembayaran extends StatelessWidget {
                 width: 100,
                 child: TextButton(
                     onPressed: () {
-                      Get.to(() => homePage());
+                      navigatorKey.currentState!
+                          .popUntil((route) => route.isFirst);
                     },
                     style: TextButton.styleFrom(
                         foregroundColor: Colors.white,

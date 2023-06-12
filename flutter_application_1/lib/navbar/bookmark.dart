@@ -34,8 +34,8 @@ class _BookmarkState extends State<Bookmark> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: Text("Loading"));
             }
-            if (!snapshot.hasData) {
-              return Center(child: Text('Data kosong'));
+            if (snapshot.hasData) {
+              return Center(child: Text('Bookmark Kosong'));
             }
 
             return ListView(
@@ -43,6 +43,32 @@ class _BookmarkState extends State<Bookmark> {
                 Map<String, dynamic> data =
                     document.data()! as Map<String, dynamic>;
                 return ListTile(
+                  onLongPress: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("Hapus"),
+                            content: Text("Hapus hotel pada bookmark?"),
+                            actions: [
+                              ElevatedButton(
+                                  onPressed: () {
+                                    FirebaseFirestore.instance
+                                        .collection("Bookmark")
+                                        .doc(document.id)
+                                        .delete();
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('Ok')),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('Tidak'))
+                            ],
+                          );
+                        });
+                  },
                   onTap: () {
                     Navigator.push(
                       context,
