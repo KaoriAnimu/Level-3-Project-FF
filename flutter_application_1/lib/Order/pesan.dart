@@ -59,7 +59,7 @@ class _pesanPenginapan extends State<pesanPenginapan> {
                     child: Column(
                       children: [
                         TextFormField(
-                          controller: TextEditingController()
+                          controller: controller.namaHotel
                             ..text = '${data['nama']}',
                           enabled: false,
                           decoration: new InputDecoration(

@@ -37,7 +37,7 @@ class _hotel extends State<hotel> {
               return Center(child: Text("Document does not exist"));
             }
 
-            if (snapshot.hasData) {
+            if (!snapshot.hasData) {
               return Center(child: Text('Hotel Kosong'));
             }
 
