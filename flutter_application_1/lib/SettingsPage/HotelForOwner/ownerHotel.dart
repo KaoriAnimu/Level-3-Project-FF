@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:email_validator/email_validator.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -46,6 +47,57 @@ class _ownerHotel extends State<ownerHotel> {
                 Padding(
                   padding: EdgeInsets.only(
                       left: 30.0, right: 30.0, top: 50, bottom: 0),
+                  child: TextFormField(
+                    controller: controller.nama,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Nama',
+                        hintText: 'Masukkan Nama',
+                        prefixIcon: Icon(Icons.people)),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Silahkan isi nama anda';
+                      }
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: 30.0, right: 30.0, top: 25, bottom: 0),
+                  child: TextFormField(
+                    controller: controller.ktp,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'No. KTP',
+                        hintText: 'Masukkan nomor ktp anda',
+                        prefixIcon: Icon(Icons.card_membership)),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Silahkan isi nomor ktp';
+                      }
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: 30.0, right: 30.0, top: 25, bottom: 0),
+                  child: TextFormField(
+                    controller: controller.tlp,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'No. Telepon',
+                        hintText: 'Masukkan Nomor Telepon Anda',
+                        prefixIcon: Icon(Icons.phone)),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Silahkan isi nomor telepon anda';
+                      }
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: 30.0, right: 30.0, top: 30, bottom: 0),
                   child: TextFormField(
                     controller: controller.nama,
                     decoration: InputDecoration(
@@ -215,17 +267,20 @@ class _ownerHotel extends State<ownerHotel> {
                               await uploadTask!.whenComplete(() {});
                           urlDownload = await snapshot.ref.getDownloadURL();
                           final data = ownerHotel_Model(
-                              nama: controller.nama.text.trim(),
-                              alamat: controller.alamat.text.trim(),
-                              fasilitas: controller.fasilitas.text.trim(),
-                              harga: controller.harga.text.trim(),
+                              nama: controller.nama.text,
+                              alamat: controller.alamat.text,
+                              fasilitas: controller.fasilitas.text,
+                              harga: controller.harga.text,
                               email: user.email!,
                               gambarUrl: urlDownload,
-                              deskripsi: controller.deskripsi.text.trim(),
-                              gambarNama: pickedFile!.name);
+                              deskripsi: controller.deskripsi.text,
+                              gambarNama: pickedFile!.name,
+                              approve: 'tidak',
+                              ktp: controller.ktp.text,
+                              tlp: controller.tlp.text);
                           ownerHotelController.instance
                               .createPesan(data, context);
-                          controller.nama.text = '';
+                          controller.nama.text;
                           controller.alamat.text = '';
                           controller.fasilitas.text = '';
                           controller.harga.text = '';
@@ -242,47 +297,3 @@ class _ownerHotel extends State<ownerHotel> {
         ));
   }
 }
-
-// showDialog(
-//                               context: context,
-//                               builder: (BuildContext context) {
-//                                 return AlertDialog(
-//                                   title: Text("Success"),
-//                                   content:
-//                                       Text("Hotel anda berhasil ditambahkan"),
-//                                   actions: [
-//                                     ElevatedButton(
-//                                         onPressed: () {
-//                                           Navigator.of(context).pop();
-//                                           showDialog(
-//                                               context: context,
-//                                               builder: (BuildContext context) {
-//                                                 return AlertDialog(
-//                                                   content: Text(
-//                                                       "Apakah anda ingin megelola hotel anda?"),
-//                                                   actions: [
-//                                                     ElevatedButton(
-//                                                         onPressed: () {
-//                                                           Navigator.push(
-//                                                             context,
-//                                                             MaterialPageRoute(
-//                                                                 builder:
-//                                                                     (context) =>
-//                                                                         listOwnerHotel()),
-//                                                           );
-//                                                         },
-//                                                         child: Text('Ya')),
-//                                                     ElevatedButton(
-//                                                         onPressed: () {
-//                                                           Navigator.of(context)
-//                                                               .pop();
-//                                                         },
-//                                                         child: Text('Tidak'))
-//                                                   ],
-//                                                 );
-//                                               });
-//                                         },
-//                                         child: Text('Ok'))
-//                                   ],
-//                                 );
-//                               });

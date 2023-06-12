@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/SettingsPage/HotelForOwner/ownerHotel.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/model/user_model.dart';
 
@@ -12,7 +13,7 @@ class UserRepository extends GetxController {
         .collection("Users")
         .add(user.toJson())
         .whenComplete(
-            () => Get.snackbar("Success", "You account has been created."))
+            () => Get.snackbar("Success", "You account has been sended."))
         .catchError((error, StackTrace) {
       Get.snackbar("Error", "Something went wrong. Try again");
     });

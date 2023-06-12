@@ -31,6 +31,7 @@ class _halamanDepan extends State<halamanDepan> {
         .collection(
           'Hotel',
         )
+        .where('approve', isNotEqualTo: 'no')
         .snapshots();
     return Scaffold(
         appBar: AppBar(

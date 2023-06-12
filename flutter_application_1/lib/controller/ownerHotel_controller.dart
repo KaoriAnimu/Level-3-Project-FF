@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/model/bookmark_model.dart';
 import 'package:flutter_application_1/model/ownerHotel_model.dart';
@@ -6,8 +5,6 @@ import 'package:flutter_application_1/repository/bookmark_repository.dart';
 import 'package:flutter_application_1/repository/ownerHotel_repository.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-
-import '../SettingsPage/HotelForOwner/listHotelOwner.dart';
 
 class ownerHotelController extends GetxController {
   static ownerHotelController get instance => Get.find();
@@ -19,6 +16,9 @@ class ownerHotelController extends GetxController {
   final email = TextEditingController();
   final gambar = TextEditingController();
   final deskripsi = TextEditingController();
+  final approve = TextEditingController();
+  final ktp = TextEditingController();
+  final tlp = TextEditingController();
 
   final namaEdit = TextEditingController();
   final alamatEdit = TextEditingController();

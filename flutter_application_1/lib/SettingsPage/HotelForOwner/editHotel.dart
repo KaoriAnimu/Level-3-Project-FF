@@ -244,20 +244,20 @@ class _editHotel extends State<editHotel> {
                                       await snapshot.ref.getDownloadURL();
                                 }
 
-                                final data = ownerHotel_Model(
-                                    nama: controller.namaEdit.text.trim(),
-                                    alamat: controller.alamatEdit.text.trim(),
-                                    fasilitas:
-                                        controller.fasilitasEdit.text.trim(),
-                                    harga: controller.hargaEdit.text.trim(),
+                                final datas = ownerHotel_Model(
+                                    nama: controller.namaEdit.text,
+                                    alamat: controller.alamatEdit.text,
+                                    fasilitas: controller.fasilitasEdit.text,
+                                    harga: controller.hargaEdit.text,
                                     email: user.email!,
                                     gambarUrl: urlDownload,
-                                    deskripsi:
-                                        controller.deskripsiEdit.text.trim(),
-                                    gambarNama:
-                                        controller.gambarEdit.text.trim());
+                                    deskripsi: controller.deskripsiEdit.text,
+                                    gambarNama: controller.gambarEdit.text,
+                                    approve: data['approve'],
+                                    ktp: controller.ktp.text,
+                                    tlp: controller.tlp.text);
                                 ownerHotelController.instance
-                                    .editPesan(data, context, documentId);
+                                    .editPesan(datas, context, documentId);
                                 controller.namaEdit.text = '';
                                 controller.alamatEdit.text = '';
                                 controller.fasilitasEdit.text = '';

@@ -1,6 +1,9 @@
 class ownerHotel_Model {
   final String? id;
   final String nama;
+  final String approve;
+  final String ktp;
+  final String tlp;
   final String alamat;
   final String deskripsi;
   final String fasilitas;
@@ -13,6 +16,9 @@ class ownerHotel_Model {
       {this.id,
       required this.nama,
       required this.alamat,
+      required this.approve,
+      required this.ktp,
+      required this.tlp,
       required this.fasilitas,
       required this.harga,
       required this.email,
@@ -28,7 +34,10 @@ class ownerHotel_Model {
       "email": email,
       "gambar": gambarUrl,
       "deskripsi": deskripsi,
-      "gambarNama": gambarNama
+      "gambarNama": gambarNama,
+      "approve": approve,
+      "ktp": ktp,
+      "tlp": tlp
     };
   }
 }

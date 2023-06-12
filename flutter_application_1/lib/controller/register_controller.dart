@@ -13,6 +13,13 @@ class registerController extends GetxController {
 
   final namaEdit = TextEditingController();
 
+  final namaOwner = TextEditingController();
+  final emailOwner = TextEditingController();
+  final approveOwner = TextEditingController();
+  final ktpOwner = TextEditingController();
+  final tlpOwner = TextEditingController();
+  final alamatOwner = TextEditingController();
+
   final userRepo = Get.put(UserRepository());
 
   Future<void> createUser(UserModel user) async {
@@ -21,5 +28,25 @@ class registerController extends GetxController {
 
   Future<void> editPesan(UserModel user, String document) async {
     await userRepo.updateUser(user, document);
+  }
+
+  void dialogDone(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Success"),
+            content: Text(
+                "Akun anda berhasil ditambahkan, silahkan tunggu 2x24 jam."),
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'))
+            ],
+          );
+        });
   }
 }
