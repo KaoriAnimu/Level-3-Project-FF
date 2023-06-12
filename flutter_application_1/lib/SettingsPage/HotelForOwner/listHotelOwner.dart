@@ -42,14 +42,18 @@ class _listOwnerHotel extends State<listOwnerHotel> {
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               return Center(
-                child: Text('Something went wrong'),
+                child: Center(child: Text('Something went wrong')),
               );
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                child: Text("Loading"),
+                child: Center(child: Text("Loading")),
               );
+            }
+
+            if (!snapshot.hasData) {
+              return Center(child: Text('Hotel Kosong'));
             }
 
             return ListView(

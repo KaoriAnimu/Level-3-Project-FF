@@ -29,7 +29,7 @@ class _halamanDepan extends State<halamanDepan> {
         .collection(
           'Hotel',
         )
-        .where('approve', isNotEqualTo: 'no')
+        .where('approve', isNotEqualTo: 'tidak')
         .snapshots();
     return Scaffold(
         appBar: AppBar(
@@ -46,7 +46,7 @@ class _halamanDepan extends State<halamanDepan> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: Text("Loading"));
             }
-            if (snapshot.hasData) {
+            if (!snapshot.hasData) {
               return Center(child: Text('Hotel kosong'));
             }
 

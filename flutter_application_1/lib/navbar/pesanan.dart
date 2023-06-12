@@ -35,7 +35,7 @@ class _pesanan extends State<pesanan> {
               return Center(child: Text("Loading"));
             }
 
-            if (snapshot.hasData) {
+            if (!snapshot.hasData) {
               return Center(child: Text('Pesanan Kosong'));
             }
 

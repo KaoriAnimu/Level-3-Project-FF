@@ -34,7 +34,7 @@ class _BookmarkState extends State<Bookmark> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: Text("Loading"));
             }
-            if (snapshot.hasData) {
+            if (!snapshot.hasData) {
               return Center(child: Text('Bookmark Kosong'));
             }
 
