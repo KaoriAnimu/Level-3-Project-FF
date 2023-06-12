@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/listHotelOwner.dart';
-import 'package:flutter_application_1/profile.dart';
+import 'package:flutter_application_1/SettingsPage/HotelForOwner/listHotelOwner.dart';
+import 'package:flutter_application_1/SettingsPage/Informasi/informasiAkun.dart';
+import 'package:flutter_application_1/SettingsPage/passwordNsecurity.dart';
+import 'package:flutter_application_1/SettingsPage/profile.dart';
 import 'package:get/get.dart';
 
-import 'main.dart';
+import '../main.dart';
 
 class tabProfile extends StatefulWidget {
   @override
@@ -12,7 +14,6 @@ class tabProfile extends StatefulWidget {
 }
 
 class _tabProfile extends State<tabProfile> {
-  final _formkey = GlobalKey<FormState>();
   final user = FirebaseAuth.instance.currentUser!;
 
   @override
@@ -20,6 +21,7 @@ class _tabProfile extends State<tabProfile> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
           padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
@@ -29,27 +31,26 @@ class _tabProfile extends State<tabProfile> {
                 child: ListTile(
                   leading: Icon(Icons.people),
                   title: Text(
-                    'Data Pribadi',
+                    'Informasi Akun',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
                   ),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => profile()),
-                    );
+                    Get.to(() => informasiAkun());
                   },
                 ),
               ),
               Card(
                 child: ListTile(
-                  leading: Icon(Icons.language),
+                  leading: Icon(Icons.lock),
                   title: Text(
-                    'Bahasa',
+                    'Password & Security',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => pNs());
+                  },
                 ),
               ),
               Card(
